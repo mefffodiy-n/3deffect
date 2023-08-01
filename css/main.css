@@ -33,6 +33,17 @@ input, textarea { outline: none; }
 input:focus:required:invalid, textarea:focus:required:invalid { border-color: red; }
 input:required:valid, textarea:required:valid { border-color: green; }
 
+body {
+	font-family: var(--userfont);
+	font-size: var(--regular-text);
+	line-height: var(--lineheight);
+	color: var(--text);
+	min-width: 320px;
+	position: relative;
+	overflow-x: hidden;
+}
+
+/* USER STYLES */
 
 body, html {
 	height: 100%;
@@ -43,7 +54,7 @@ body, html {
 	height: 100%;
 	position: relative;
 	color: #fff;
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 
 .showcase::before {
@@ -97,7 +108,7 @@ body, html {
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
-	animation: k-glow 1.8s ease-in-out infinite;
+	animation: k-glow 1.6s ease-in-out infinite;
 }
 
 .showcase__header {
@@ -115,13 +126,17 @@ body, html {
 	color: var(--accent);
 }
 
+.showcase-carousel .swiper-wrapper {
+	transition: var(--transition);
+}
+
 .showcase-carousel__item {
 	position: relative;
 	height: calc(100vh - var(--padding) * 2);
 	text-align: center;
 	opacity: .25;
 	transform: scale(.75);
-	transition: transform 1.8s var(--transition), opacity 1.8s var(--transition);
+	transition: opacity 1.8s var(--transition), transform 1.8s var(--transition);
 }
 
 .showcase-carousel__item::after {
@@ -175,6 +190,7 @@ body, html {
 .showcase-carousel__image-right {
 	perspective-origin: right center;
 	clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+	margin-left: -.55px;
 }
 
 .showcase-carousel__image-left .showcase-carousel__image {
@@ -187,6 +203,57 @@ body, html {
 	animation-direction: alternate;
 }
 
+/* NAVIGATION */
+
+.showcase-navigation {
+	position: absolute;
+	overflow: hidden;
+	z-index: 2;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.showcase-navigation > * {
+	position: absolute;
+	height: 100%;
+	width: 50%;
+	outline: none;
+	cursor: pointer;
+}
+
+.showcase-navigation__next {
+	right: 0;
+}
+
+.showcase-navigation > *::before {
+	content: '?';
+	font-family: assassin-st;
+	opacity: 0;
+	transition: opacity .75s ease-out;
+	position: absolute;
+	transform: rotate(-90deg);
+	left: 50px;
+	top: 50%;
+	font-size: 45px;
+}
+
+.showcase-navigation > *:hover::before {
+	opacity: .25;
+}
+
+.showcase-navigation__next::before {
+	transform: rotate(90deg);
+	right: 50px;
+	left: auto;
+}
+
+.showcase-navigation > *.swiper-button-disabled {
+	display: none;
+}
+
+/* ANIMATIONS */
 
 @keyframes k-light {
 	0% {
